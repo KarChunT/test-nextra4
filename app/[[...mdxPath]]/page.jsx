@@ -1,4 +1,4 @@
-import { generateStaticParamsFor, importPage } from "nextra/pages";
+import { importPage } from "nextra/pages";
 import { useMDXComponents } from "../../mdx-components";
 
 export function generateStaticParamsFor(param) {
