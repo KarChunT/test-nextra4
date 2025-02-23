@@ -1,24 +1,7 @@
-import { importPage } from "nextra/pages";
+import { generateStaticParamsFor, importPage } from "nextra/pages";
 import { useMDXComponents } from "../../mdx-components";
 
-export function generateStaticParamsFor(param) {
-  return async () => {
-    let data;
-    try {
-      data = JSON.parse('[""]'); // Replace this with the actual data source
-    } catch (error) {
-      console.error("Failed to parse JSON:", error);
-      throw error;
-    }
-
-    const params = [];
-    for (let item of data) {
-      const keys = Object.keys(await importPage(item));
-      params.push(...keys.map((key) => ({ [param]: key.split("/") })));
-    }
-    return params;
-  };
-}
+export const generateStaticParams = generateStaticParamsFor("mdxPath");
 
 export async function generateMetadata(props) {
   const params = await props.params;
